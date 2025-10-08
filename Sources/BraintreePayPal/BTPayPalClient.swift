@@ -59,7 +59,7 @@ import BraintreeDataCollector
 
     private var universalLink: URL?
     
-    private var fallbackUrlScheme: String?
+    private var fallbackURLScheme: String?
 
     /// Indicates if the user returned back to the merchant app from the `BTWebAuthenticationSession`
     /// Will only be `true` if the user proceed through the `UIAlertController`
@@ -104,14 +104,14 @@ import BraintreeDataCollector
     ///   - apiClient: The API Client
     ///   - universalLink: The URL to use for the PayPal app switch flow. Must be a valid HTTPS URL dedicated to Braintree app switch returns. This URL must be allow-listed in your Braintree Control Panel.
     /// - Warning: This initializer should be used for merchants using the PayPal App Switch flow. This feature is currently in beta and may change or be removed in future releases.
-    @objc(initWithAPIClient:universalLink:fallbackUrlScheme:)
-    public convenience init(apiClient: BTAPIClient, universalLink: URL, fallbackUrlScheme: String? = nil) {
+    @objc(initWithAPIClient:universalLink:fallbackURLScheme:)
+    public convenience init(apiClient: BTAPIClient, universalLink: URL, fallbackURLScheme: String? = nil) {
         self.init(apiClient: apiClient)
         
         /// appending a PayPal app switch specific path to verify we are in the correct flow when
         /// `canHandleReturnURL` is called
         self.universalLink = universalLink.appendingPathComponent("braintreeAppSwitchPayPal")
-        self.fallbackUrlScheme = fallbackUrlScheme
+        self.fallbackURLScheme = fallbackURLScheme
     }
 
     // MARK: - Public Methods
@@ -461,7 +461,7 @@ import BraintreeDataCollector
                 parameters: request.parameters(
                     with: configuration,
                     universalLink: self.universalLink,
-                    fallbackUrlScheme: self.fallbackUrlScheme,
+                    fallbackURLScheme: self.fallbackURLScheme,
                     isPayPalAppInstalled: self.application.isPayPalAppInstalled()
                 )
             ) { body, _, error in
@@ -769,6 +769,6 @@ extension BTPayPalClient: BTAppContextSwitchClient {
     /// :nodoc:
     @_documentation(visibility: private)
     @objc public static func canHandleReturnURL(_ url: URL) -> Bool {
-        BTPayPalReturnURL.isValid(url, fallbackUrlScheme: payPalClient?.fallbackUrlScheme)
+        BTPayPalReturnURL.isValid(url, fallbackURLScheme: payPalClient?.fallbackURLScheme)
     }
 }

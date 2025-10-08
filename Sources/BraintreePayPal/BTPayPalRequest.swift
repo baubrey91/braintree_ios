@@ -176,7 +176,7 @@ import BraintreeCore
     public func parameters(
         with configuration: BTConfiguration,
         universalLink: URL? = nil,
-        fallbackUrlScheme: String? = nil,
+        fallbackURLScheme: String? = nil,
         isPayPalAppInstalled: Bool = false
     ) -> [String: Any] {
         var experienceProfile: [String: Any] = [:]
@@ -244,8 +244,8 @@ import BraintreeCore
                 "os_type": UIDevice.current.systemName,
                 "merchant_app_return_url": universalLink.absoluteString
             ]
-            if let fallbackUrlScheme {
-                appSwitchParameters["fallback_url_scheme"] = fallbackUrlScheme
+            if let fallbackURLScheme {
+                appSwitchParameters["fallback_url_scheme"] = fallbackURLScheme
             }
             
             return parameters.merging(appSwitchParameters) { $1 }
