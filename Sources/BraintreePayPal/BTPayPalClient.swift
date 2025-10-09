@@ -70,7 +70,7 @@ import BraintreeDataCollector
     private var contextID: String?
     
     /// Used to determine whether or not to render the WAS popup.
-    /// If the experiement is enabled, set the `prefersEphemeralWebBrowserSession` flag to true.
+    /// If the experiment is enabled, set the `prefersEphemeralWebBrowserSession` flag to true.
     private var experiment: String?
     
     /// Used for analytics purposes, to determine if browser-presentation event is associated with a locally cached, or remotely fetched `BTConfiguration`
