@@ -53,7 +53,12 @@ import BraintreeCore
         fallbackURLScheme: String? = nil,
         isPayPalAppInstalled: Bool = false
     ) -> [String: Any] {
-        let baseParameters = super.parameters(with: configuration, universalLink: universalLink, fallbackURLScheme: fallbackURLScheme, isPayPalAppInstalled: isPayPalAppInstalled)
+        let baseParameters = super.parameters(
+            with: configuration,
+            universalLink: universalLink,
+            fallbackURLScheme: fallbackURLScheme,
+            isPayPalAppInstalled: isPayPalAppInstalled
+        )
         var vaultParameters: [String: Any] = ["offer_paypal_credit": offerCredit]
 
         if let billingAgreementDescription {
